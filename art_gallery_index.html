@@ -1,0 +1,16 @@
+---
+layout: page
+---
+
+<div>
+	<ul class="small-block-grid-4">
+        {% for gallery in page.galleries %}
+        <li>
+        <a href="{{ gallery['title'] }}">
+            <img class="gallery-best-image" src="{{ gallery['link'] }}/thumbs/front_{{ gallery['best_image'] }}">
+        </a>
+        <h3><a href="{{ gallery['link'] }}">{{ gallery["title"] }}</a></h3>
+        </li>
+        {% endfor %}
+	</ul>
+</div>
