@@ -1,11 +1,12 @@
 ---
 layout: page
+# individual pages for each gallery
 header:
-    title: Works in color
-    #background-color: "#6B8A78"
+    title: Some Title
+    background-color: "#6B8A78"
 ---
 <div>
-	<ul class="clearing-thumbs small-block-grid-4" data-clearing>
+      	<ul class="clearing-thumbs small-block-grid-4" data-clearing>
 		{% for image in page.images %}
         <li><a href="{{ image }}">
         	{% if page.captions[image] == nil %}
@@ -16,6 +17,7 @@ header:
         </a></li>
 		{% endfor %}
 	</ul>
+	<div id="spinner"></div>
 </div>
 
 {{ page.description }}

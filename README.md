@@ -12,7 +12,7 @@ You need rmagick, exifr, imgemagick and magickwand lib. On Ubuntu run
 Then place art_gallery_index.html, art_gallery_page.html and jekyll-art-gallery-generator.rb into your site's _plugins directory or into jekyll global [plugin folder](https://github.com/jekyll/jekyll/blob/master/site/_docs/plugins.md). Add gallery.yaml into your data folder and edit it appropriatelly.
 Use _data/gallery.yml, not _config.xml for the gallery settings.
 
-Note that  art_gallery_index.html, art_gallery_page.html are just samples and should be modified to fit your site.
+Note that  art_gallery_index.html, art_gallery_page.html are just samples and *need to be modified* to fit your site. They are samples that rely on Foundation CSS and JS.
 
 ## How it works
 

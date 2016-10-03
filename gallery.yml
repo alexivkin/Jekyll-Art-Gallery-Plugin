@@ -8,11 +8,11 @@
 #gems:
 #  - jekyll-art-gallery-generator
 
-source_dir: _portfolio
+source_dir: _portfolio  # original images, that will be cropped according to the size_limit, thumbnailed and posted
 title: Portfolio
-#sort_field: "timestamp" #
+#sort_field: "timestamp"
 sort_field: "title" # sorting of the galleries on the gallery index page
-#sort_reverse: true   #
+#sort_reverse: true
 thumbnail_size:
   x: 250
   y: 250
@@ -25,32 +25,29 @@ header_thumb_size:    # best image thumb for the header of a gallery index page
 
 scale_method: crop # default for all galleries. could be fit or crop or crop_bottom
 strip_exif: true
-#watermark: Watermark2_200x200.png #add this as a watermark, lower bottom corner. Transparent image, from images/ folder, with grayscale used for hardlight compositing
-# RMagick has visible watermark(image, how much of watermark lightness to compose on "xx%", how much of watermark's saturation to compose %, gravity (SouthEastGravity is good), x-offset (origin depends on gravity), y-offset)
-# Invisible watermark can be done via Fourier Watermark, Visible when viewed with the Fourier filter - gmic.sourceforge.net or G'Mic plugin for Gimp
-# Also EXIF "Copyright" tag can be added
+size_limit: 1000 # maximum size, px in either dimention, to limit the images to
 
-# if the gallery is not listed it takes all the defaults
-# folder_name:
-#   hidden: false # don't generate index file - it's still on the web though
+# Visible watermark - Transparent image, from images/ folder, with grayscale used for hardlight compositing, lower bottom corner.
+#watermark: Watermark2_200x200.png
 
-# if the gallery is listed it uses specified values except for defaults
 galleries:
-  Other:
-    hidden: true
+  # if the gallery is not listed it takes all the defaults
+  # if the gallery is listed it uses specified values except for defaults
+  Hidden Gallery:
+    hidden: true # don't generate index file - it's still on the web though
   Shows:
     #hidden: true
     #sort_field: name # rule for sorting images within galleries.
     #best_image: MoonLight.jpg
     #header_image: sy_header.jpg
-    I_f-As.jpg: Set one
-    SSDa.jpg: All in two
+    Super1.jpg: Set one
+    SSDa2.jpg: All in two
     scale_method: crop_bottom
   Paintings:
     description: Egg tempera, acrylic and gold leaf on wood.
     best_image: Soob.jpg
-    header_image: batik_header.jpg
+    header_image: paintings_header.jpg
     scale_method: crop_bottom
-    ddeal.jpg: Nevy
+    paintings.jpg: Nevy
 
 #symlink: true # to avoid copying big files into the generated site folder - does not work with stripping EXIF

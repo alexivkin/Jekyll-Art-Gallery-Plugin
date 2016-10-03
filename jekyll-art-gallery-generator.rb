@@ -1,7 +1,6 @@
 # Jekyll art gallery generator plugin
 # Distribiuted under MIT license with attribution
 #
-#require 'exifr'
 require 'rmagick'
 include Magick
 
@@ -161,7 +160,7 @@ class GalleryPage < ReadYamlPage
       dest_image=image.gsub(/[^0-9A-Za-z.\-]/, '_').downcase
       dest_image_abs_path = site.in_dest_dir(File.join(@dir, dest_image))
       if File.file?(dest_image_abs_path) == false or File.mtime(image_path) > File.mtime(dest_image_abs_path)
-        if config["strip_exif"] or config["watermark"] # can't simply copy or symlink, need to pre-process the image
+        if config["strip_exif"] or config["watermark"] or config["size_limit"] # can't simply copy or symlink, need to pre-process the image
           source_img=ImageList.new(image_path)
           print "Generating #{dest_image}..."
           if config["strip_exif"]
@@ -175,6 +174,9 @@ class GalleryPage < ReadYamlPage
               print "watermarking"
               source_img.composite!(wm_img,Magick::SouthEastGravity,20,20,Magick::HardLightCompositeOp).write(dest_image_abs_path)
             end
+          end
+          if config["size_limit"]
+            source_img.resize_to_fit!(config["size_limit"], config["size_limit"]) if (source_img.columns > config["size_limit"] || source_img.rows > config["size_limit"]) # resize only if bigger than the limit
           end
           puts "."
           source_img.write(dest_image_abs_path)
