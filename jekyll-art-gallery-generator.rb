@@ -70,7 +70,7 @@ class GalleryIndex < ReadYamlPage
         # site-wide data for use in liquid templates
         # available to liquid via site.data.gallery.galleries.[name]. subitems are manually defined in gallery.yml, and title, link, description, best_image etc and images array
         # inject additional auto-discovered data back into sitewide gallery object
-        gallery_title=gallery.data["gallery"] # folder name
+        gallery_title=gallery.data["title"] # gallery name, contains case, unlike folder name from "gallery" which is downcased
         if site.data["gallery"]["galleries"].has_key?(gallery_title)
           site.data["gallery"]["galleries"][gallery_title].merge!(gallery.data)
         else

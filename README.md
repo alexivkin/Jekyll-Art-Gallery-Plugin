@@ -17,9 +17,15 @@ Note that  art_gallery_index.html, art_gallery_page.html are just samples and *n
 ## How it works
 
 The plugin will use copy files from the source folder into the destination folder per your settings in gallery.yaml, and transform them in the destination folder per your settings. The source files will never be changed.
-The plugin enumerates the folders and files, copies if necessary into the destination/generated site directory, then creates the thumbnails if necessary, saves that info into the page
- data and into the site data (like auto generating navigation links), then runs the templates through jekyll/liquid engine and creates appropriate index.html pages in each portfolio folder
-source-jekyll-gallery-generator. The individual portfolio pages are generated from the templates in _plugins directory like art_gallery_index.html. If a file or a folder name starts with . it will be skipped.
+
+The plugin auto-discovers, enumerates the folders and files, resizes/cleans EXIF if necessary and copies to the generated site directory. It creates the thumbnails and front page images if necessary, saves them into the thumbs subfolders.
+You could, but do not have to define individual galleries in gallery.yaml.
+
+The plugin then populates Jekyll variables, so they can be used throughout the site. Things like navigation links, thumbnail and names of images picked to represent each gallery on an index page. It then runs the templates through
+jekyll/liquid engine and creates appropriate index.html pages in each portfolio. The individual portfolio pages are generated from the art_gallery_page.html template in _plugins directory. The overall portfolio index is based on art_gallery_index.html.
+
+You can hide individual galleries by specifying the hidden flag in gallery.yaml. You could hide specific files in a gallery by creating a subfolder in a gallery folder and moving the files there (this plugin is not recursive).
+Alternatively each file folder can be hidden by chaning its name to start with a dot.
 
 ## Configuration
 
