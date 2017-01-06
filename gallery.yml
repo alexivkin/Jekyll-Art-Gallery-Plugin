@@ -23,7 +23,7 @@ header_thumb_size:    # best image thumb for the header of a gallery index page
   x: 1900
   y: 170
 
-scale_method: crop # default for all galleries. could be fit or crop or crop_bottom
+scale_method: crop # default for all galleries. could be fit or crop, crop_bottom, crop_right, crop_left, crop_top ('crop' crops around, others crop out the side indicated as a parameter
 strip_exif: true
 size_limit: 1000 # maximum size, px in either dimention, to limit the images to
 
@@ -35,7 +35,9 @@ galleries:
   # if the gallery is listed it uses specified values except for defaults
   Hidden Gallery:
     hidden: true # don't generate index file - it's still on the web though
-  Shows:
+  Shows 2018:
+    title: Shows in November # name used in the navigation bar and headers
+    description: Where I've been, what I've done in 2018
     #hidden: true
     #sort_field: name # rule for sorting images within galleries.
     #best_image: MoonLight.jpg

@@ -27,12 +27,18 @@ jekyll/liquid engine and creates appropriate index.html pages in each portfolio.
 You can hide individual galleries by specifying the hidden flag in gallery.yaml. You could hide specific files in a gallery by creating a subfolder in a gallery folder and moving the files there (this plugin is not recursive).
 Alternatively each file folder can be hidden by chaning its name to start with a dot.
 
+
+## Notes
+
+* Gallery names (folders and names in gallery.yaml) are case insensitive and can contain spaces
+* An invisible watermark via a Fourier Watermark is better but not implemented. That watermark is visible when viewed with the Fourier filter - for more see gmic.sourceforge.net or G'Mic plugin for Gimp
+* Also an EXIF "Copyright" tag can be added (it's somewhere in the middle between the highly visible/annoying current watermark, and the invisible Fourier one)
+* The plugin is not yet packaged as a gem, just not time to do it.
+
 ## Configuration
 
 Look in the gallery.yaml, it should be pretty self explanatory.
 
-* scale_method - fill, fit, limit
-* symlink - makes it link, not copy files.
+* symlink - makes a symbolic link instead of copying files from the original portfolio folder into the generated site folder. Destructive modifications (e.g watermarks, downsizing, EXIF removal) dont work with symlinks.
 * images are .jpg, .jpeg, .png, .gif
-
-The plugin is not yet packaged as a gem, just not time to do it.
+* watermark - Transparent image, from images/ folder, with grayscale used for hardlight compositing, in the lower bottom corner.
