@@ -30,7 +30,7 @@ Alternatively each file folder can be hidden by chaning its name to start with a
 
 ## Notes
 
-* Gallery names (folders and names in gallery.yaml) are case insensitive and can contain spaces
+* Gallery names (folders and names in gallery.yaml) are case insensitive and can contain spaces. Note though that in some circuimstances, like using Windows subsystem for Linux to run jekyll, you might have to lowercase folder names.
 * An invisible watermark via a Fourier Watermark is better but not implemented. That watermark is visible when viewed with the Fourier filter - for more see gmic.sourceforge.net or G'Mic plugin for Gimp
 * Also an EXIF "Copyright" tag can be added (it's somewhere in the middle between the highly visible/annoying current watermark, and the invisible Fourier one)
 * The plugin is not yet packaged as a gem, just not time to do it.

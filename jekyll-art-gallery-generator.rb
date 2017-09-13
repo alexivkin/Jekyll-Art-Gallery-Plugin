@@ -63,6 +63,7 @@ module Jekyll
         galleries.reverse!
       end
 
+      site.data["navigation"]=[]
       site.data["galleries-sorted"]=[]
       galleries.each {|gallery|
         unless gallery.hidden
