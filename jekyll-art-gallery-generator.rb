@@ -63,7 +63,6 @@ module Jekyll
         galleries.reverse!
       end
 
-      site.data["navigation"]=[]
       site.data["galleries-sorted"]=[]
       galleries.each {|gallery|
         unless gallery.hidden
@@ -93,7 +92,7 @@ module Jekyll
       @base = base
       #source_dir=dir
 
-      @dir = dir.gsub(/^_/, "").gsub(/[^0-9A-Za-z.\\\-\/]/, '_').downcase   # destination dir, same as source sans the leading underscore, the directory component is made web compatible
+      @dir = dir.gsub(/^_/, "").gsub(/[^0-9A-Za-z.\\\-\/]/, '_').downcase   # destination dir, same as source without the leading underscore. web compatible
       FileUtils.mkdir_p(site.in_dest_dir(@dir), :mode => 0755)
 
       @name = "index.html"
@@ -108,7 +107,7 @@ module Jekyll
       (config["galleries"] || {}).each_pair do |k,v|
           galleries.merge!({k.downcase => v})
         end
-      gallery_config = galleries[gallery_name] || {}
+      gallery_config = galleries[gallery_name.downcase] || {}
       #puts "Generating #{gallery_name}: #{gallery_config}"
       sort_field = config["sort_field"] || "name"
 
@@ -214,10 +213,13 @@ module Jekyll
             FileUtils.cp(image_path,dest_image_abs_path)
           end
         end
-        # push descriptions if defined
+        # Add file descriptions if defined
         if gallery_config.has_key?(image)
           # puts "added ${image} = #{gallery_config[image]}"
           self.data["captions"][dest_image]=gallery_config[image]
+        else
+          # If not defined add a trimmed filename to help with SEO
+          self.data["captions"][dest_image]=File.basename(image,File.extname(image)).gsub("_", " ")
         end
         # remember the image
         @images.push(dest_image)
