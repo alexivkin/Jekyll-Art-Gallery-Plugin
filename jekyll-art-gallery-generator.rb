@@ -1,5 +1,6 @@
 # Jekyll art gallery generator plugin
 # Distribiuted under MIT license with attribution
+# sourced from https://github.com/ggreer/jekyll-gallery-generator
 #
 require 'rmagick'
 include Magick
