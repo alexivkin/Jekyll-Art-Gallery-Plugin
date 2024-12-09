@@ -346,6 +346,9 @@ module Jekyll
       end
       Dir.chdir(original_dir)
 
+      # fix bug
+      site.data["navigation"] = []
+
       # generate gallery index
       gallery_index = GalleryIndex.new(site, site.source, dir, galleries)
       gallery_index.render(site.layouts, site.site_payload)
