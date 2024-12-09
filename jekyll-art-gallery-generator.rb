@@ -1,6 +1,6 @@
 # Jekyll art gallery generator plugin
 # Distribiuted under MIT license with attribution
-# sourced from https://github.com/ggreer/jekyll-gallery-generator
+# based on https://github.com/ggreer/jekyll-gallery-generator
 #
 require 'rmagick'
 include Magick
@@ -8,6 +8,13 @@ include Magick
 include FileUtils
 
 $image_extensions = [".png", ".jpg", ".jpeg", ".gif"]
+
+unless File.respond_to?(:exists?)
+  class << File
+    alias_method :exists?, :exist?
+  end
+end
+
 
 module Jekyll
   class GalleryFile < StaticFile
@@ -19,7 +26,7 @@ module Jekyll
   class ReadYamlPage < Page
     def read_yaml(base, name, opts = {})
       begin
-        self.content = File.read(File.join(base.to_s, name.to_s), (site ? site.file_read_opts : {}).merge(opts))
+        self.content = File.read(File.join(base.to_s, name.to_s), **(site ? site.file_read_opts : {}).merge(opts))
         if content =~ /\A(---\s*\n.*?\n?)^((---|\.\.\.)\s*$\n?)/m
           self.content = $POSTMATCH
           self.data = SafeYAML.load($1)
@@ -220,7 +227,7 @@ module Jekyll
           self.data["captions"][dest_image]=gallery_config[image]
         else
           # If not defined add a trimmed filename to help with SEO
-          self.data["captions"][dest_image]=File.basename(image,File.extname(image)).gsub("_", " ")
+          self.data["captions"][dest_image]=File.basename(image,File.extname(image)).gsub("_", " ").gsub("\"", "&quot;")
         end
         # remember the image
         @images.push(dest_image)
